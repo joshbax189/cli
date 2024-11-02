@@ -1737,9 +1737,9 @@ Arguments FNC and ARGS are used for advice `:around'."
   (let ((msg (eask--ansi 'error (apply #'format-message args))))
     (unless eask-inhibit-error-message
       (eask--unsilent (eask-msg "%s" msg)))
-    (run-hook-with-args 'eask-on-error-hook 'error msg)
-    (eask--trigger-error))
-  (when debug-on-error (apply fnc args)))
+    (run-hook-with-args 'eask-on-error-hook 'error msg))
+  ;; (eask--trigger-error)
+  (apply fnc args))
 
 (defun eask--warn (fnc &rest args)
   "On warn.
